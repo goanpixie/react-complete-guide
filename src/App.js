@@ -4,49 +4,73 @@ import SuperHeroes from './SuperHeroes/SuperHeroes.js';
 import ww_logo from './SuperHeroes/wonder_woman.jpeg';
 import bp_logo from './SuperHeroes/black_panther.png';
 import y_logo from './SuperHeroes/yoda.jpg';
+import bw_logo from './SuperHeroes/bw_logo.png';
 
 class App extends Component {
   state = {
     superHeroes: [
-      { name: "Wonder Woman", weapon: "golden whip" },
-      { name: "Black Panther", weapon: "armor suit" },
-      { name: "Yoda", weapon: "wisdom" }
-    ]
+      { id:"fgd", name: "Wonder Woman", weapon: "golden whip" },
+      { id:"njb", name: "Black Panther", weapon: "armor suit" },
+      { id:"hgh", name: "Yoda", weapon: "wisdom" }
+    ],
+    showSuperhero: false
   }
 
-  makeSuperheroHandler = (newName,newWeapon) => {
+  makeSuperheroHandler = (newName, newWeapon) => {
     //  console.log("I was clicked!")
     this.setState({
       superHeroes: [
-        { name: newName, weapon: newWeapon},
+        { name: newName, weapon: newWeapon },
         { name: "Black Panther", weapon: "armor suit" },
         { name: "Yoda", weapon: "wisdom, say I may...yuhooooo!!" }
       ]
     })
-   }
+  }
+
+  deleteSuperheroHandler = (heroIndex) => {
+    const heroes = [...this.state.superHeroes];//makes a copy of the superHeroes array instaed of referencing it from original array. Hence in subsequest steps the original array won't get mutated.
+    heroes.splice(heroIndex, 1);
+    this.setState({ superHeroes: heroes });
+
+  }
+
+  toggleSuperheroHandler = () => {
+    const doesShow = this.state.showSuperhero;
+    this.setState({ showSuperhero: !doesShow });
+  }
 
   render() {
+    const style = {
+      backgroundColor: '#fab81e',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor:'pointer'
+    }
+
+    let heroes = null;
+    if (this.state.showSuperhero) {
+      heroes = (
+        <div>
+          {this.state.superHeroes.map((hero, index) => {
+            return <SuperHeroes
+              click={() => this.deleteSuperheroHandler(index)}
+              name={hero.name}
+              weapon={hero.weapon}
+              key={hero.id}>
+            </SuperHeroes>
+          })}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>My React app:)</h1>
-        <button onClick={this.makeSuperheroHandler.bind(this, "Black Widow", "Widow's bite")}>Make a SuperHero</button>
-        <SuperHeroes
-          name={this.state.superHeroes[0].name}
-          weapon={this.state.superHeroes[0].weapon}>
-          <img src={ww_logo} alt="Wonder Woman" />
-        </SuperHeroes>
-        <SuperHeroes
-          name={this.state.superHeroes[1].name}
-          weapon={this.state.superHeroes[1].weapon}
-          click={this.makeSuperheroHandler}>
-          <img src={bp_logo} alt="Black Pather" />
-        </SuperHeroes>
-        <SuperHeroes
-          name={this.state.superHeroes[2].name}
-          weapon={this.state.superHeroes[2].weapon}>
-          <img src={y_logo} alt="Yoda" height="300"/>
-        </SuperHeroes>
+        <button onClick={this.toggleSuperheroHandler}>Make a SuperHero</button>
+        {heroes}
       </div>
+
     );
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'My React App') );
   }
