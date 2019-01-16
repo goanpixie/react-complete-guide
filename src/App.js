@@ -5,7 +5,6 @@ import ww_logo from './SuperHeroes/wonder_woman.jpeg';
 import bp_logo from './SuperHeroes/black_panther.png';
 import y_logo from './SuperHeroes/yoda.jpg';
 import bw_logo from './SuperHeroes/bw_logo.png';
-import Radium,{StyleRoot} from 'radium';
 
 class App extends Component {
   state = {
@@ -59,11 +58,7 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        text:'black'
-      }
+      cursor: 'pointer'
     }
 
     let heroes = null;
@@ -83,10 +78,6 @@ class App extends Component {
         </div>
       );
       style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        text:'black'
-      }
     }
     let classes = [];
     if (this.state.superHeroes.length <= 2) {
@@ -98,7 +89,6 @@ class App extends Component {
     console.log(classes);
 
     return (
-      <StyleRoot>
       <div className="App">
         <h1>My React app:)</h1>
         <p className={classes.join(' ')}>It's time to save the world..let's go!</p>
@@ -109,11 +99,9 @@ class App extends Component {
         </button>
         {heroes}
         </div>
-      </StyleRoot>
-
     );
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'My React App') );
   }
 }
 
-export default Radium(App);
+export default App;
