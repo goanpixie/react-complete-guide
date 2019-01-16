@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import SuperHeroes from './SuperHeroes/SuperHeroes.js';
 import ww_logo from './SuperHeroes/wonder_woman.jpeg';
 import bp_logo from './SuperHeroes/black_panther.png';
@@ -52,16 +52,8 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
-
     let heroes = null;
+    let btnClass = "";
     if (this.state.showSuperhero) {
       heroes = (
         <div>
@@ -77,23 +69,23 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = 'red';
+      btnClass = classes.Red;
     }
-    let classes = [];
+    let assignedClasses = [];
     if (this.state.superHeroes.length <= 2) {
-      classes.push('red');
+      assignedClasses.push(classes.red);
     };
     if (this.state.superHeroes.length <= 1) {
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     };
     console.log(classes);
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>My React app:)</h1>
-        <p className={classes.join(' ')}>It's time to save the world..let's go!</p>
+        <p className={assignedClasses.join(' ')}>It's time to save the world..let's go!</p>
         <button
-          style={style}
+          className={btnClass}
           onClick={this.toggleSuperheroHandler}>
           Make a SuperHero
         </button>
