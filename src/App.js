@@ -29,7 +29,7 @@ class App extends Component {
 
   nameChangedHandler = (event, id) => {
     const superHeroIndex = this.state.superHeroes.findIndex(hero => {
-      return hero.id === id;
+      return hero.userid === id;
     });
     const superHero = {
       ...this.state.superHeroes[superHeroIndex]
