@@ -2,12 +2,12 @@ import React, {
   Component
 } from 'react';
 import classes from './App.css';
-import SuperHero from './SuperHero/SuperHero.js';
+import SuperHero from '../components/SuperHeroes/SuperHero/SuperHero.js';
 //SuperHero images
-import ww_logo from './SuperHero/wonder_woman.jpeg';
-import bp_logo from './SuperHero/black_panther.png';
-import y_logo from './SuperHero/yoda.jpg';
-import bw_logo from './SuperHero/bw_logo.png';
+import ww_logo from '../assests/wonder_woman.jpeg';
+import bp_logo from '../assests/black_panther.png';
+import y_logo from '../assests/yoda.jpg';
+import bw_logo from '../assests/bw_logo.png';
 
 class App extends Component {
   state = {
