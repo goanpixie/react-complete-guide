@@ -5,6 +5,7 @@ import ww_logo from './SuperHeroes/wonder_woman.jpeg';
 import bp_logo from './SuperHeroes/black_panther.png';
 import y_logo from './SuperHeroes/yoda.jpg';
 import bw_logo from './SuperHeroes/bw_logo.png';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 class App extends Component {
   state = {
@@ -59,14 +60,14 @@ class App extends Component {
       heroes = (
         <div>
           {this.state.superHeroes.map((hero, index) => {
-            return <SuperHeroes
+            return <ErrorBoundary key={hero.id}>
+              <SuperHeroes
               click={() => this.deleteSuperheroHandler(index)}
               name={hero.name}
               weapon={hero.weapon}
-              key={hero.id}
               changed={(event) => this.nameChangedHandler(event, hero.id)}
-            >
-            </SuperHeroes>
+              >
+            </SuperHeroes></ErrorBoundary>
           })}
         </div>
       );
