@@ -60,14 +60,14 @@ class App extends Component {
       heroes = (
         <div>
           {this.state.superHeroes.map((hero, index) => {
-            return <ErrorBoundary key={hero.id}>
-              <SuperHeroes
+            return <SuperHeroes
               click={() => this.deleteSuperheroHandler(index)}
               name={hero.name}
               weapon={hero.weapon}
+              key={hero.id}
               changed={(event) => this.nameChangedHandler(event, hero.id)}
-              >
-            </SuperHeroes></ErrorBoundary>
+            >
+            </SuperHeroes>
           })}
         </div>
       );
