@@ -85,7 +85,8 @@ class App extends Component {
 
   render() {
       let heroes = null;
-      let btnClass = "";
+    let btnClass = "";
+    //component
       if (this.state.showSuperhero) {
         heroes = ( <
           div > {
@@ -93,7 +94,8 @@ class App extends Component {
               return <SuperHero
               click = {
                 () => this.deleteSuperheroHandler(index)
-              }
+                }
+
               name = {
                 hero.name
               }
